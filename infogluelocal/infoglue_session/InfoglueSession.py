@@ -48,7 +48,7 @@ class InfoglueSession(object):
             'ModelClassName':'',
             'versionValue':"<?xml version='1.0' encoding='UTF-8'?><article xmlns='x-schema:ArticleSchema.xml'><attributes><Template><![CDATA[{Template}]]></Template><ComponentProperties><![CDATA[{ComponentProperties}]]></ComponentProperties><Name><![CDATA[{Name}]]></Name><RelatedComponents><![CDATA[{RelatedComponents}]]></RelatedComponents><Description><![CDATA[{Description}]]></Description><Manual><![CDATA[{Manual}]]></Manual><GroupName><![CDATA[]]></GroupName><ComponentTasks><![CDATA[{ComponentTasks}]]></ComponentTasks><PreTemplate><![CDATA[{PreTemplate}]]></PreTemplate><ComponentLabels><![CDATA[{ComponentLabels}]]></ComponentLabels><ModelClassName><![CDATA[{ModelClassName}]]></ModelClassName><IGAuthorFullName><![CDATA[{IGAuthorFullName}]]></IGAuthorFullName><IGAuthorEmail><![CDATA[{IGAuthorEmail}]]></IGAuthorEmail></attributes></article>",
             'currentEditorId':1,
-            'repositoryId':8,
+            #'repositoryId':8,
             'contentId':19884
         }
 

@@ -3,9 +3,8 @@ from bs4 import BeautifulSoup
 
 class Component(object):
 
-    def __init__(self, sess, component_id, repository_id):
+    def __init__(self, sess, component_id):
         self.component_id = component_id 
-        self.repository_id = repository_id
         self.name = None
         self.description = None
         self.pre_template = None
@@ -17,16 +16,15 @@ class Component(object):
         self.model_class_name = None
         self.connected = False
 
-        self.connect(sess, component_id, repository_id)
+        self.connect(sess, component_id)
 
-    def connect(self, sess, component_id, repository_id):
+    def connect(self, sess, component_id):
         self.sess = sess
         self.component_id = component_id
 
-        action = '{}/ViewContent.action?contentId={}&repositoryId={}'.format(
+        action = '{}/ViewContent.action?contentId={}'.format(
                     self.sess.cms_url,
-                    component_id,
-                    repository_id
+                    component_id
                 )
 
         html_doc = self.sess.session.get(action).text
@@ -82,7 +80,6 @@ class Component(object):
             'Name': self.name,
             'ComponentLabels': self.labels,
             'ComponentProperties': self.properties,
-            'repositoryId': self.repository_id,
             'ModelClassName': self.model_class_name,
             'ComponentDescription': self.description
             })

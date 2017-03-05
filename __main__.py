@@ -11,9 +11,10 @@ if __name__ == '__main__':
     #        "Template": "Lorem Ipsum dolum bepa"
     #    })
 
-    comp = Component(sess, 19884, 8)
+    comp = Component(sess, 19884)
     
-    comp.template = 'OST!!!'
+    comp.template = 'Test Template'
+    comp.labels = 'test_label_sv=1'
 
     comp.update()
 
