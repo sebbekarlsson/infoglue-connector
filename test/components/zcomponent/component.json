@@ -1,0 +1,55 @@
+{
+    "component_id": "19884",
+    "connected": true,
+    "description": "",
+    "group_names": [
+        {
+            "checked": null,
+            "name": "GroupName",
+            "value": "Basic Pages"
+        },
+        {
+            "checked": "1",
+            "name": "GroupName",
+            "value": "Single Content"
+        },
+        {
+            "checked": null,
+            "name": "GroupName",
+            "value": "Content Iterators"
+        },
+        {
+            "checked": null,
+            "name": "GroupName",
+            "value": "Navigation"
+        },
+        {
+            "checked": null,
+            "name": "GroupName",
+            "value": "Layout"
+        },
+        {
+            "checked": null,
+            "name": "GroupName",
+            "value": "Templates"
+        },
+        {
+            "checked": null,
+            "name": "GroupName",
+            "value": "Other"
+        },
+        {
+            "checked": null,
+            "name": "GroupName",
+            "value": "Content Components"
+        }
+    ],
+    "labels": "test_label_sv=1",
+    "model_class_name": "",
+    "name": "",
+    "pre_template": "undefined83",
+    "properties": "",
+    "realname": "zcomponent",
+    "tasks": "",
+    "template": "Test Template"
+}

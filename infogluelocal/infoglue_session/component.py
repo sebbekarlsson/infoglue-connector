@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 class Component(object):
 
     def __init__(self, sess, component_id):
-        self.component_id = component_id 
+        self.component_id = component_id
+        self.realname = None
         self.name = None
         self.description = None
         self.pre_template = None
@@ -29,16 +30,21 @@ class Component(object):
 
         html_doc = self.sess.session.get(action).text
 
+        self.realname = html_doc.split('contentName')[1]
+        self.realname = self.realname.split('= ')[1]
+        self.realname = self.realname.split(';')[0]
+        self.realname = self.realname.replace('"', '')
+
         if html_doc:
             soup = BeautifulSoup(html_doc, 'html.parser')
 
         name_input = soup.select_one('input[name="Name"]')
-        description_input = soup.select_one('textarea[name="ComponentDescription"]')
+        description_input = soup.select_one('textarea[name="Description"]')
         template_input = soup.select_one('textarea[name="Template"]')
         pre_template_input = soup.select_one('textarea[name="PreTemplate"]')
         labels_input = soup.select_one('textarea[name="ComponentLabels"]')
         properties_input = soup.select_one('textarea[name="ComponentProperties"]')
-        group_names_inputs = soup.select_one('input[name="GroupName"]')
+        group_names_inputs = soup.select('input[name="GroupName"]')
         task_input = soup.select_one('textarea[name="ComponentTasks"]')
         model_class_name_input = soup.select_one('input[name="ModelClassName"]')
 
@@ -61,7 +67,7 @@ class Component(object):
             self.properties = properties_input.text
 
         if group_names_inputs:
-            self.group_names = group_names_inputs
+            self.group_names = [{"name": g.get("name"), "value": g.get("value"), "checked": g.get("checked")} for g in group_names_inputs]
 
         if task_input:
             self.tasks = task_input.text
