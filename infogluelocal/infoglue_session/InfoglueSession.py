@@ -22,8 +22,8 @@ class InfoglueSession(object):
         data = {
                 'j_username': username,
                 'j_password': password,
-                'x': 12,
-                'y': 5
+                'x': 12, # ??? from original request
+                'y': 5 # same as above ? 
                 }
 
         r = self.session.post(self.cms_url + action, data)

@@ -68,7 +68,13 @@ class Component(object):
             self.properties = properties_input.text
 
         if group_names_inputs:
-            self.group_names = [{"name": g.get("name"), "value": g.get("value"), "checked": g.get("checked")} for g in group_names_inputs]
+            self.group_names = [
+                {
+                    "name": g.get("name"),
+                    "value": g.get("value"),
+                    "checked": g.get("checked")
+                } for g in group_names_inputs
+            ]
 
         if task_input:
             self.tasks = task_input.text
