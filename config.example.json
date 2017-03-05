@@ -1,0 +1,5 @@
+{
+    "username": "yourUserName",
+    "password": "yourPassword",
+    "cms_url": "http://infoglue.dev:8090/infoglueCMS"
+}
