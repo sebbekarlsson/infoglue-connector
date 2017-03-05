@@ -130,7 +130,8 @@ def get():
     args = parser.parse_args()
 
     out_dir = args.dir if args.dir else '.'
-
+    
+    print('Downloading component...')
     comp = Component(sess, component_id=args.id)
     
     final_dir = out_dir + '/' + comp.realname.replace(' ', '_')
@@ -154,4 +155,4 @@ def get():
 
     component_file.close()
     
-    print("Will download component")
+    print("Component \"{}\" was downloaded: {}".format(comp.realname, final_dir))

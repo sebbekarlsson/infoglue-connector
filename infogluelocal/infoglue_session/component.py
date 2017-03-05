@@ -80,7 +80,7 @@ class Component(object):
 
 
     def update(self):
-        return self.sess.update_component({
+        data = {
             'contentId': self.component_id,
             'Template': self.template,
             'PreTemplate': self.pre_template,
@@ -89,5 +89,8 @@ class Component(object):
             'ComponentProperties': self.properties,
             'ModelClassName': self.model_class_name,
             'ComponentDescription': self.description,
-            'languageId': self.language
-            })
+            'languageId': self.language,
+            'GroupName': [grp['value'] for grp in self.group_names if grp['checked']]
+        }
+
+        return self.sess.update_component(data)
