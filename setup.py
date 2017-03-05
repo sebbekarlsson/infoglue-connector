@@ -8,7 +8,8 @@ setup(
         install_requires=[
             'requests',
             'watchdog',
-            'bs4'
+            'bs4',
+            'urllib3'
             ],
         packages=[
             'infogluelocal'
