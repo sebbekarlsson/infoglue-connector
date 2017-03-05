@@ -15,6 +15,7 @@ class Component(object):
         self.group_names = []
         self.tasks = None
         self.model_class_name = None
+        self.language = 2
         self.connected = False
 
         self.connect(sess, component_id)
@@ -87,5 +88,6 @@ class Component(object):
             'ComponentLabels': self.labels,
             'ComponentProperties': self.properties,
             'ModelClassName': self.model_class_name,
-            'ComponentDescription': self.description
+            'ComponentDescription': self.description,
+            'languageId': self.language
             })

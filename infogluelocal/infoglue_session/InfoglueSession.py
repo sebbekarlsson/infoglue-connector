@@ -1,3 +1,9 @@
+# encoding=utf8  
+import sys  
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
+
 from requests import Session
 import string
 
@@ -60,7 +66,12 @@ class InfoglueSession(object):
         for k, v in data.items():
             if k in keys:
                 try:
-                    data['versionValue'] = data['versionValue'].replace('{' + k + '}', v)
+                    kr = '{' + k + '}'
+                    vr = v
+                    data['versionValue'] = data['versionValue'].replace(
+                            kr,
+                            vr
+                            )
                 except KeyError:
                     pass
         

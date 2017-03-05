@@ -13,27 +13,71 @@ import shutil
 sess = InfoglueSession(cms_url=config['cms_url'])
 sess.login(config['username'], config['password'])
 
+_patterns = [
+    "*.html",
+    "*.php",
+    "*.js",
+    "*.css",
+    "*.json",
+    "*.jsp",
+    "*.jspx",
+    "*.java",
+    "*.txt",
+    "*.ini",
+    "*.sql"
+]
+
 def push(filename):
-    sess.update_component({
-            "Template": "Lorem Ipsum"
-        })
+    print("pushing")
+    print(filename)
+    comp_config = None
+
+    comp_name = filename.split('components/')[1]
+    comp_name = comp_name.split('/')[0]
+    
+    if 'component.json' in filename:
+        json_path = filename
+    elif 'components' in filename:
+        json_path = filename.split(comp_name)[0] + comp_name + '/component.json'
+    
+    if os.path.isfile(json_path):
+        with open(json_path) as conf_file:
+            comp_config = json.loads(conf_file.read())
+        conf_file.close()
+
+    if comp_config:
+        comp = Component(sess, comp_config['component_id'])
+
+        for k, v in comp_config.items():
+            if 'component.json' in filename:
+                for _f in _patterns:
+                    f = _f.replace('*', '')
+                    file_path = filename.replace('component.json', '') + '/' + k + f
+                    
+                    if os.path.isfile(file_path):
+                        break
+
+            elif 'components' in filename:
+                for _f in _patterns:
+                    f = _f.replace('*', '')
+                    file_path = filename.split(comp_name)[0] + comp_name + '/{}{}'.format(k, f)
+
+                    if os.path.isfile(file_path):
+                        break
+            
+            if os.path.isfile(file_path):
+                with open(file_path) as file_file:
+                    setattr(comp, k, file_file.read())
+                file_file.close()
+            else:
+                setattr(comp, k, v)
+    
+    return comp.update()
 
 class MyHandler(PatternMatchingEventHandler):
-    patterns = [
-            "*.html",
-            "*.php",
-            "*.js",
-            "*.css",
-            "*.json",
-            "*.jsp",
-            "*.jspx",
-            "*.java",
-            "*.txt",
-            "*.ini",
-            "*.sql"
-            ]
-
     
+    patterns = _patterns
+
     def process(self, event):
         """
         event.event_type 
